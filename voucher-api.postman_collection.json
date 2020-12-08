@@ -1,0 +1,170 @@
+{
+	"info": {
+		"_postman_id": "624e2f9e-3009-4b4b-af0d-51e7c0d03223",
+		"name": "voucher-api",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "/health",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/health",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"health"
+					]
+				},
+				"description": "To check status of service"
+			},
+			"response": []
+		},
+		{
+			"name": "/recipient",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"name\": \"Winston\",\r\n  \"email\": \"Winston2@gmail.com\"\r\n}"
+				},
+				"url": {
+					"raw": "http://localhost:8080/recipient",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"recipient"
+					]
+				},
+				"description": "Create a new recipient"
+			},
+			"response": []
+		},
+		{
+			"name": "/special-offer",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"type": "text",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"specialOfferName\": \"12.12 Sale Again Again\",\r\n  \"discountPercentage\": 70,\r\n  \"expirationDate\": \"2021-01-25\"\r\n}"
+				},
+				"url": {
+					"raw": "http://localhost:8080/special-offer",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"special-offer"
+					]
+				},
+				"description": "Create a new special offer and generate unique voucher code for each recipient"
+			},
+			"response": []
+		},
+		{
+			"name": "/voucher/{email}",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/voucher/:email?page=0&pageSize=10",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"voucher",
+						":email"
+					],
+					"query": [
+						{
+							"key": "page",
+							"value": "0"
+						},
+						{
+							"key": "pageSize",
+							"value": "10"
+						}
+					],
+					"variable": [
+						{
+							"key": "email",
+							"value": "Winston2@gmail.com"
+						}
+					]
+				},
+				"description": "Get valid vouchers by email id"
+			},
+			"response": []
+		},
+		{
+			"name": "/voucher/{voucher-code}/email/{email}",
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "http://localhost:8080/voucher/:voucher-code/email/:email",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"voucher",
+						":voucher-code",
+						"email",
+						":email"
+					],
+					"variable": [
+						{
+							"key": "voucher-code",
+							"value": "59d2119d-e75f-4ad3-ac6f-c90292b5610e"
+						},
+						{
+							"key": "email",
+							"value": "Winston2@gmail.com"
+						}
+					]
+				},
+				"description": "Use voucher that assigned to recipient by email"
+			},
+			"response": []
+		}
+	],
+	"protocolProfileBehavior": {}
+}
